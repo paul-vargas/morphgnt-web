@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="myproject" basedir=".">
+	
+	<property name="netbeans_dir" location="."/>
+	<property name="netbeans_src" location="src"/>
+	<property name="git_dir" location="C:\Users\anonymous\git\morphgnt-web\"/>
+	<property name="git_src" location="C:\Users\anonymous\git\morphgnt-web\src"/>
+	
+	<target name="git-to-netbeans">
+		<copy file="${git_dir}/pom.xml" tofile="${netbeans_dir}/pom.xml" overwrite="true" verbose="true" />
+		<copy file="${git_dir}/build.xml" tofile="${netbeans_dir}/build.xml" overwrite="true" verbose="true" failonerror="false" />
+		<copy todir="${netbeans_src}" overwrite="true" verbose="true">
+			<fileset dir="${git_src}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="netbeans-to-git">
+		<copy file="${netbeans_dir}/pom.xml" tofile="${git_dir}/pom.xml" overwrite="true" verbose="true" />
+		<copy file="${netbeans_dir}/build.xml" tofile="${git_dir}/build.xml" overwrite="true" verbose="true" failonerror="false" />
+		<copy todir="${git_src}" overwrite="true" verbose="true">
+			<fileset dir="${netbeans_src}">
+				<include name="**/*.*" />
+				<exclude name="**/jboss-web.xml" />
+			</fileset>
+		</copy>
+	</target>
+	
+</project>

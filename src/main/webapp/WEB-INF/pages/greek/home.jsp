@@ -6,95 +6,59 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>JSP Page</title>
-		<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" >
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Bootstrap 101 Template</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="greek/assets/css/bootstrap-colorselector.css">
+		<link rel="stylesheet" href="greek/assets/css/custom.css?v=1">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 	</head>
-
 	<body>
+		<div class="container-fluid">
+			<h1>Hello, world!</h1>
 
-		<div class="container">
-
-			<h3 class="text-center">morphological tagging <small>of the SBL Greek New Testament</small></h3>
-
-			<div class="row">
-				<form class="col s12">
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<select name="sp" class="validate"><option></option><option value="A-">Adjective</option><option value="C-">Conjunction</option><option value="D-">Adverb</option><option value="I-">Interjection</option><option value="N-">Noun</option><option value="P-">Preposition</option><option value="RA">Definite Article</option><option value="RD">Demonstrative Pronoun</option><option value="RI">Interrogative/Indefinite Pronoun</option><option value="RP">Personal Pronoun</option><option value="RR">Relative Pronoun</option><option value="V-">Verb</option><option value="X-">Particle</option></select>
-							<label>Part of Speech: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="person" class="validate"><option value="."></option><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option></select>
-							<label>Person: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="tense" onchange="validateState(this)"><option value="."></option><option value="P">Present</option><option value="I">Imperfect</option><option value="F">Future</option><option value="A">Aorist</option><option value="X">Perfect</option><option value="Y">Pluperfect</option></select>
-							<label>Tense: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="voice" onchange="validateState(this)"><option value="."></option><option value="A">Active</option><option value="M">Middle</option><option value="P">Passive</option></select>
-							<label>Voice: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="mood" onchange="validateState(this)"><option value="."></option><option value="I">Indicative</option><option value="D">Imperative</option><option value="S">Subjunctive</option><option value="O">Optative</option><option value="N">Infinitive</option><option value="P">Participle</option></select>
-							<label>Mood: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="case" onchange="validateState(this)"><option value="."></option><option value="N">Nominative</option><option value="G">Genitive</option><option value="D">Dative</option><option value="A">Accusative</option><option value="V">Vocative</option></select>
-							<label>Case: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="number" onchange="validateState(this)"><option value="."></option><option value="S">Singular</option><option value="P">Plural</option></select>
-							<label>Number: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="gender" onchange="validateState(this)"><option value="."></option><option value="M">Masculine</option><option value="F">Feminine</option><option value="N">Neuter</option></select>
-							<label>Gender: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<select name="degree" onchange="validateState(this)"><option value="."></option><option value="C">Comparative</option><option value="S">Superlative</option></select>
-							<label>Degree: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<input class="greek" type="text" name="t2" value="" onchange="replaceChars(this); validateState(this);">
-							<label>Text: </label>
-						</div>
-						<div class="input-field col s12 m6 l3">
-							<input class="greek" type="text" name="t4" value="" onchange="replaceChars(this); validateState(this);">
-							<label>Lemma: </label>
-						</div>
-					</div>
-
-				</form>
-			</div>
 
 			<form onsubmit="return false;">
 				<div>
-					<div class="input-field col s12">
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					<button class="btn btn-default btn-xs" type="button" onclick="clr(this)"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Clear</button>
-					<button class="btn btn-default btn-xs" type="button" onclick="del(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-					<button class="btn btn-default btn-xs" type="button" onclick="toUp(this)" aria-label="Up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-					<button class="btn btn-default btn-xs" type="button" onclick="toDown(this)" aria-label="Down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-				</div>
+					<div class="well well-sm thepanel">
+<label>Color: <select name="color" onchange="validateState(this)"> <option></option> 
+<option value="#FF9999" style="background-color: #FF9999">Red</option>
+<option value="#FFDBBB" style="background-color: #FFDBBB">Orange</option>
+<option value="#FFFFBB" style="background-color: #FFFFBB">Yellow</option>
+<option value="#BBFFBB" style="background-color: #BBFFBB">Green</option>
+<option value="#BBFFFF" style="background-color: #BBFFFF">Cyan</option>
+<option value="#FFBBFF" style="background-color: #FFBBFF">Purple</option>
+<option value="#929292" style="background-color: #929292">Gray</option>
+</select></label>
+						<label>Part of Speech: <select name="sp" onchange="validateState(this)"><option></option><option value="A-">Adjective</option><option value="C-">Conjunction</option><option value="D-">Adverb</option><option value="I-">Interjection</option><option value="N-">Noun</option><option value="P-">Preposition</option><option value="RA">Definite Article</option><option value="RD">Demonstrative Pronoun</option><option value="RI">Interrogative/Indefinite Pronoun</option><option value="RP">Personal Pronoun</option><option value="RR">Relative Pronoun</option><option value="V-">Verb</option><option value="X-">Particle</option></select></label>
+						<label>Person: <select name="person" onchange="validateState(this)"><option value="."></option><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option></select></label>
+						<label>Tense: <select name="tense" onchange="validateState(this)"><option value="."></option><option value="P">Present</option><option value="I">Imperfect</option><option value="F">Future</option><option value="A">Aorist</option><option value="X">Perfect</option><option value="Y">Pluperfect</option></select></label>
+						<label>Voice: <select name="voice" onchange="validateState(this)"><option value="."></option><option value="A">Active</option><option value="M">Middle</option><option value="P">Passive</option></select></label>
+						<label>Mood: <select name="mood" onchange="validateState(this)"><option value="."></option><option value="I">Indicative</option><option value="D">Imperative</option><option value="S">Subjunctive</option><option value="O">Optative</option><option value="N">Infinitive</option><option value="P">Participle</option></select></label>
+						<label>Case: <select name="case" onchange="validateState(this)"><option value="."></option><option value="N">Nominative</option><option value="G">Genitive</option><option value="D">Dative</option><option value="A">Accusative</option><option value="V">Vocative</option></select></label>
+						<label>Number: <select name="number" onchange="validateState(this)"><option value="."></option><option value="S">Singular</option><option value="P">Plural</option></select></label>
+						<label>Gender: <select name="gender" onchange="validateState(this)"><option value="."></option><option value="M">Masculine</option><option value="F">Feminine</option><option value="N">Neuter</option></select></label>
+						<label>Degree: <select name="degree" onchange="validateState(this)"><option value="."></option><option value="C">Comparative</option><option value="S">Superlative</option></select></label>
+						<label>Text: <input class="greek" type="text" name="t2" value="" onchange="replaceChars(this); validateState(this);"></label>
+						<label>Lemma: <input class="greek" type="text" name="t4" value="" onchange="replaceChars(this); validateState(this);"></label>
+						<button class="btn btn-default btn-xs" type="button" onclick="clr(this)"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Clear</button>
+						<button class="btn btn-default btn-xs" type="button" onclick="del(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+						<button class="btn btn-default btn-xs" type="button" onclick="toUp(this)" aria-label="Up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+						<button class="btn btn-default btn-xs" type="button" onclick="toDown(this)" aria-label="Down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+					</div>
+				</div><%--
 				<p class="text-center hidden-xs">
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('α')" title="ALPHA">α</button>
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('β')" title="BETA">β</button>
@@ -121,10 +85,10 @@
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('ψ')" title="PSI">ψ</button>
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('ω')" title="OMEGA">ω</button>
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('%')" title="PERCENT SIGN">%</button>
-				</p>
+				</p>--%>
 				<div class="row form-group">
 					<div class="col-xs-4 text-left">
-						<button class="btn btn-primary" type="button" onclick="search(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+						<button class="btn btn-primary" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Highlight</button>
 					</div>
 					<div class="col-xs-8 text-right">
 						<button id="modal-button" type="button" class="btn btn-default btn-xs hidden" data-toggle="modal" data-target="#modal-div"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span> Show SQL</button>
@@ -132,73 +96,15 @@
 					</div>
 				</div>
 			</form>
-			<div id="results-div" class="table-responsive hidden">
-				<table id="results-table" class="table table-bordered table-striped table-hover table-condensed">
-					<caption>
-					</caption>
-					<tbody>
-					</tbody>
-				</table>
-			</div>
-			<div class="modal fade" id="modal-div" tabindex="-1" role="dialog" aria-labelledby="modal-span">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<span class="modal-title" id="modal-span">SQL</span>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<textarea class="form-control" rows="5" onfocus="this.select()" spellcheck="false" readonly></textarea>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<p><img src="https://api.biblia.com/v1/PoweredByBiblia.png" alt="Powered by Biblia">
-				This site uses the <a href="https://biblia.com/">Biblia</a> web services from <a href="https://www.logos.com/">Logos Bible Software</a>.</p>
 
-		</div>
-		<div id="templates-div" class="hidden">
-			<div id="morpho-div" class="well well-sm">
 
-			</div>
-			<p id="letters-p" class="text-center hidden-xs">
-
-			</p>
+			<div id="text-div"></div>
 		</div>
 
 		<!-- Scripts -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-		<script type="text/javascript">
-									$(document).ready(function () {
-										$('select').material_select();
-									});
-
-									function validateState(ele) {
-										if (ele) {
-											var tagName = ele.tagName;
-											switch (tagName) {
-												case "SELECT":
-													var str = ele.options[ele.selectedIndex].value;
-													if (str === "" || str === ".") {
-														$(ele).removeAttr("style");
-													} else {
-														$(ele).css("border", "1px solid Blue");
-													}
-													break;
-												case "INPUT":
-													var str = ele.value;
-													if (str === "") {
-														$(ele).removeAttr("style");
-													} else {
-														$(ele).css("border", "1px solid Blue");
-													}
-													break;
-											}
-										}
-									}
-
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="greek/assets/js/custom.js?v=1"></script>
+		<script src="greek/assets/js/bootstrap-colorselector.js?v=1"></script>
 	</body>
+</html>

@@ -1,0 +1,14 @@
+@font-face {
+	font-family: MySBLGrk;
+	src: local("SBL Greek"), url("fonts/SBL_grk.woff");
+}
+.greek {
+	font-family: MySBLGrk, serif;
+}
+button.greek {
+	font-size: 105%;
+}
+#results-table td {
+	word-break: keep-all;
+	white-space: nowrap;
+}
