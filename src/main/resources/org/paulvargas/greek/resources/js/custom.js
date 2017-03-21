@@ -6,6 +6,18 @@ $(window).load(function () {
 	loadVerses(4, 1);
 });
 
+var morph = {
+	"sp": {"name": "Part of Speech", "A-": "Adjective", "C-": "Conjunction", "D-": "Adverb", "I-": "Interjection", "N-": "Noun", "P-": "Preposition", "RA": "Definite Article", "RD": "Demonstrative Pronoun", "RI": "Interrogative/Indefinite Pronoun", "RP": "Personal Pronoun", "RR": "Relative Pronoun", "V-": "Verb", "X-": "Particle"},
+	"person": {"name": "Person", ".": "", "1": "1st", "2": "2nd", "3": "3rd"},
+	"tense": {"name": "Tense", ".": "", "P": "Present", "I": "Imperfect", "F": "Future", "A": "Aorist", "X": "Perfect", "Y": "Pluperfect"},
+	"voice": {"name": "Voice", ".": "", "A": "Active", "M": "Middle", "P": "Passive"},
+	"mood": {"name": "Mood", ".": "", "I": "Indicative", "D": "Imperative", "S": "Subjunctive", "O": "Optative", "N": "Infinitive", "P": "Participle"},
+	"case": {"name": "Case", ".": "", "N": "Nominative", "G": "Genitive", "D": "Dative", "A": "Accusative", "V": "Vocative"},
+	"number": {"name": "Number", ".": "", "S": "Singular", "P": "Plural"},
+	"gender": {"name": "Gender", ".": "", "M": "Masculine", "F": "Feminine", "N": "Neuter"},
+	"degree": {"name": "Degree", ".": "", "C": "Comparative", "S": "Superlative"}
+};
+
 function replaceChars(ele) {
 	var text = $.trim($(ele).val());
 	text = text.replace(/[\u0386\u0391\u1f08\u1f09\u1f0a\u1f0b\u1f0c\u1f0d\u1f0e\u1f0f\u1f88\u1f89\u1f8a\u1f8b\u1f8c\u1f8d\u1f8e\u1f8f\u1fb8\u1fb9\u1fba\u1fbb\u1fbc\u03ac\u03b1\u1f00\u1f01\u1f02\u1f03\u1f04\u1f05\u1f06\u1f07\u1f70\u1f71\u1f80\u1f81\u1f82\u1f83\u1f84\u1f85\u1f86\u1f87\u1fb0\u1fb1\u1fb2\u1fb3\u1fb4\u1fb6\u1fb7]/, "α");
@@ -36,6 +48,42 @@ function replaceChars(ele) {
 	$(ele).val(text);
 }
 
+function parseMorphology(obj) {
+	var t2 = obj.t2;
+	var t4 = obj.t4; 
+	var spcd = obj.spcd;
+	var sp = spcd.substr(0, 2);
+	var cd = spcd.substr(2, 8);
+	var content = t2 + ": ·" + morph.sp[sp] + " ";
+	if (cd.charAt(0) !== "-") {
+		content += "·" + morph.person[cd.charAt(0)] + " ";
+	}
+	if (cd.charAt(1) !== "-") {
+		content += "·" + morph.tense[cd.charAt(1)] + " ";
+	}
+	if (cd.charAt(2) !== "-") {
+		content += "·" + morph.voice[cd.charAt(2)] + " ";
+	}
+	if (cd.charAt(3) !== "-") {
+		content += "·" + morph.mood[cd.charAt(3)] + " ";
+	}
+	if (cd.charAt(4) !== "-") {
+		content += "·" + morph.case[cd.charAt(4)] + " ";
+	}
+	if (cd.charAt(5) !== "-") {
+		content += "·" + morph.number[cd.charAt(5)] + " ";
+	}
+	if (cd.charAt(6) !== "-") {
+		content += "·" + morph.gender[cd.charAt(6)] + " ";
+	}
+	if (cd.charAt(7) !== "-") {
+		content += "·" + morph.degree[cd.charAt(7)] + " ";
+	}
+	content += "(" + t4 + ")";
+	return content;
+}
+
+
 function loadVerses(book, chapter) {
 	$.ajax({
 		url: "greek/verses/" + book + "/" + chapter,
@@ -55,11 +103,15 @@ function loadVerses(book, chapter) {
 				}
 
 				var $span = $("<span/>").data(obj)
-						.text(obj.t1)
-						.addClass("greek");
+						//.attr({"class":"tooltip0","title":obj.t2,"data-original-title":obj.t2})
+						.attr("title", parseMorphology(obj))
+						.addClass("greek")
+						.text(obj.t1);
 				$div.append($span);
 				$div.append(" ");
 			});
+
+			$div.find("span").tooltip();
 
 
 		},

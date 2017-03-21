@@ -1,6 +1,6 @@
 @font-face {
 	font-family: MySBLGrk;
-	src: local("SBL Greek"), url("fonts/SBL_grk.woff");
+	src: local("SBL Greek"), url("../fonts/SBL_grk.woff");
 }
 .greek {
 	font-family: MySBLGrk, serif;
