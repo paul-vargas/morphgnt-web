@@ -54,32 +54,32 @@ function parseMorphology(obj) {
 	var spcd = obj.spcd;
 	var sp = spcd.substr(0, 2);
 	var cd = spcd.substr(2, 8);
-	var content = t2 + ": ·" + morph.sp[sp] + " ";
+	var content = t2 + ": " + morph.sp[sp];
 	if (cd.charAt(0) !== "-") {
-		content += "·" + morph.person[cd.charAt(0)] + " ";
+		content += ", " + morph.person[cd.charAt(0)];
 	}
 	if (cd.charAt(1) !== "-") {
-		content += "·" + morph.tense[cd.charAt(1)] + " ";
+		content += ", " + morph.tense[cd.charAt(1)];
 	}
 	if (cd.charAt(2) !== "-") {
-		content += "·" + morph.voice[cd.charAt(2)] + " ";
+		content += ", " + morph.voice[cd.charAt(2)];
 	}
 	if (cd.charAt(3) !== "-") {
-		content += "·" + morph.mood[cd.charAt(3)] + " ";
+		content += ", " + morph.mood[cd.charAt(3)];
 	}
 	if (cd.charAt(4) !== "-") {
-		content += "·" + morph.case[cd.charAt(4)] + " ";
+		content += ", " + morph.case[cd.charAt(4)];
 	}
 	if (cd.charAt(5) !== "-") {
-		content += "·" + morph.number[cd.charAt(5)] + " ";
+		content += ", " + morph.number[cd.charAt(5)];
 	}
 	if (cd.charAt(6) !== "-") {
-		content += "·" + morph.gender[cd.charAt(6)] + " ";
+		content += ", " + morph.gender[cd.charAt(6)];
 	}
 	if (cd.charAt(7) !== "-") {
-		content += "·" + morph.degree[cd.charAt(7)] + " ";
+		content += ", " + morph.degree[cd.charAt(7)];
 	}
-	content += "(" + t4 + ")";
+	content += " (" + t4 + ")";
 	return content;
 }
 
@@ -199,9 +199,10 @@ function validateState(ele) {
 	if (ele) {
 		var tagName = ele.tagName;
 		var name = ele.name;
+		var str;
 		switch (tagName) {
 			case "SELECT":
-				var str = ele.options[ele.selectedIndex].value;
+				str = ele.options[ele.selectedIndex].value;
 				if (str === "" || str === ".") {
 					$(ele).removeAttr("style");
 				} else {
@@ -212,7 +213,7 @@ function validateState(ele) {
 				}
 				break;
 			case "INPUT":
-				var str = ele.value;
+				str = ele.value;
 				if (str === "") {
 					$(ele).removeAttr("style");
 				} else {

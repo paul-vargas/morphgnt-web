@@ -32,13 +32,13 @@ public class MyFilter extends HttpFilter {
 		if (from == null) {
 			from = request.getRemoteAddr();
 		}
-		StringBuffer requestURL = request.getRequestURL();
+		String requestURL = request.getRequestURL().toString();
 		if (LOG.isLoggable(Level.INFO)) {
 			LOG.log(Level.INFO, "From <{2} {4}> {0} \"{1}\" with \"{3}\"", new Object[] { request.getMethod(), requestURL, from, request.getHeader("User-Agent"), country});
 		}
 
 		// Redirect if applies
-		if (!request.getRequestURI().replaceFirst(Pattern.quote(request.getContextPath()), "").equals("/") && requestURL.charAt(requestURL.length() - 1) == '/') {
+		if (!"/".equals(request.getRequestURI().replaceFirst(Pattern.quote(request.getContextPath()), "")) && requestURL.charAt(requestURL.length() - 1) == '/') {
 			response.sendRedirect(requestURL.substring(0, requestURL.length() - 1));
 		} else {
 			chain.doFilter(request, response);

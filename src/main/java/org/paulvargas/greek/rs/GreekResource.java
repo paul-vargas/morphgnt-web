@@ -24,6 +24,10 @@ import org.omnifaces.filter.CacheControlFilter;
 import org.paulvargas.greek.ejb.GreekEJB;
 import org.paulvargas.tools.util.ClassLoaderUtil;
 
+/**
+ * 
+ * @author @paul-vargas
+ */
 @Path("greek")
 @Stateless
 public class GreekResource {
@@ -62,7 +66,6 @@ public class GreekResource {
 		try {
 			InputStream source = ClassLoaderUtil.getResourceAsStream("org/paulvargas/greek/resources/" + folder + "/" + filename, this.getClass());
 			if (source != null) {
-				System.out.println(ClassLoaderUtil.getResource("org/paulvargas/greek/resources/" + folder + "/" + filename, this.getClass()));
 				//CacheControlFilter.setCacheHeaders(response, 31104000); // 1 year
 				switch (folder) { // image/png, application/javascript, text/css, image/svg+xml, application/javascript; charset=utf-8, image/gif
 					case "css":

@@ -8,6 +8,10 @@ import javax.ws.rs.core.Application;
 
 import org.paulvargas.greek.rs.GreekResource;
 
+/**
+ * 
+ * @author @paul-vargas
+ */
 @ApplicationPath("rest")
 public class MyApplication extends Application {
 

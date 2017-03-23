@@ -11,6 +11,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.type.StandardBasicTypes;
 
+/**
+ * 
+ * @author pvargasbext
+ */
 @Stateless
 public class GreekEJB {
 
@@ -19,6 +23,12 @@ public class GreekEJB {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * 
+	 * @param book
+	 * @param chapter
+	 * @return 
+	 */
 	public List<Map<String, Object>> getFullChapter(int book, int chapter) {
 		final String sql = "SELECT v, CONCAT(sp, cd) spcd, t1, t2, t4 FROM words WHERE b = :book AND c = :chapter ORDER BY id, v";
 		Session session = em.unwrap(Session.class);
@@ -31,8 +41,7 @@ public class GreekEJB {
 		sqlQuery.setInteger("book", book)
 				.setInteger("chapter", chapter)
 				.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
-		List<Map<String, Object>> list = sqlQuery.list();
-		return list;
+		return sqlQuery.list();
 	}
 
 }
