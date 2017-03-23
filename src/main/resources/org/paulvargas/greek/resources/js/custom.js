@@ -54,10 +54,7 @@ function parseMorphology(obj) {
 	var spcd = obj.spcd;
 	var sp = spcd.substr(0, 2);
 	var cd = spcd.substr(2, 8);
-	var content = t2 + ": " + morph.sp[sp];
-	if (cd.charAt(0) !== "-") {
-		content += ", " + morph.person[cd.charAt(0)];
-	}
+	var content = "<p class=\"greek\">" + t2 + ": " + morph.sp[sp];
 	if (cd.charAt(1) !== "-") {
 		content += ", " + morph.tense[cd.charAt(1)];
 	}
@@ -70,6 +67,9 @@ function parseMorphology(obj) {
 	if (cd.charAt(4) !== "-") {
 		content += ", " + morph.case[cd.charAt(4)];
 	}
+	if (cd.charAt(0) !== "-") {
+		content += ", " + morph.person[cd.charAt(0)];
+	}
 	if (cd.charAt(5) !== "-") {
 		content += ", " + morph.number[cd.charAt(5)];
 	}
@@ -79,7 +79,7 @@ function parseMorphology(obj) {
 	if (cd.charAt(7) !== "-") {
 		content += ", " + morph.degree[cd.charAt(7)];
 	}
-	content += " (" + t4 + ")";
+	content += " (" + t4 + ")</p>";
 	return content;
 }
 
@@ -104,8 +104,7 @@ function loadVerses(book, chapter) {
 
 				var $span = $("<span/>").data(obj)
 						//.attr({"class":"tooltip0","title":obj.t2,"data-original-title":obj.t2})
-						.attr("title", parseMorphology(obj))
-						.addClass("greek")
+						.attr({title: parseMorphology(obj), class: "greek", "data-html": true})
 						.text(obj.t1);
 				$div.append($span);
 				$div.append(" ");
@@ -255,7 +254,7 @@ function highlight() {
 			$spans.each(function () {
 				var spcd = $(this).data("spcd");
 				if (regex.test(spcd)) {
-					$(this).css({"background-color": color, "padding": ".1em", "box-shadow": "0 0 .2em Silver"});
+					$(this).css({"background-color": color, "padding": ".1em", "box-shadow": "0 0 .3em Gray"});
 				}
 			});
 		}
