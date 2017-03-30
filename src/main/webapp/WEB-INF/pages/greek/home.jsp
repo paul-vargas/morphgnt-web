@@ -11,7 +11,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bootstrap 101 Template</title>
+		<title>SBLGNT</title>
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -27,21 +27,21 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<h1>Hello, world!</h1>
+			<h1>SBLGNT</h1>
 
 
 			<form onsubmit="return false;">
 				<div>
 					<div class="well well-sm thepanel">
-<label>Color: <select name="color" onchange="validateState(this)"> <option></option> 
-<option value="#FF9999" style="background-color: #FF9999">Red</option>
-<option value="#FFDBBB" style="background-color: #FFDBBB">Orange</option>
-<option value="#FFFFBB" style="background-color: #FFFFBB">Yellow</option>
-<option value="#BBFFBB" style="background-color: #BBFFBB">Green</option>
-<option value="#BBFFFF" style="background-color: #BBFFFF">Cyan</option>
-<option value="#FFBBFF" style="background-color: #FFBBFF">Purple</option>
-<option value="#929292" style="background-color: #929292">Gray</option>
-</select></label>
+						<label>Color: <select name="color" onchange="validateState(this)"> <option></option> 
+								<option value="#FF9999" style="background-color: #FF9999">Red</option>
+								<option value="#FFDBBB" style="background-color: #FFDBBB">Orange</option>
+								<option value="#FFFFBB" style="background-color: #FFFFBB">Yellow</option>
+								<option value="#BBFFBB" style="background-color: #BBFFBB">Green</option>
+								<option value="#BBFFFF" style="background-color: #BBFFFF">Cyan</option>
+								<option value="#FFBBFF" style="background-color: #FFBBFF">Purple</option>
+								<option value="#929292" style="background-color: #929292">Gray</option>
+							</select></label>
 						<label>Part of Speech: <select name="sp" onchange="validateState(this)"><option></option><option value="A-">Adjective</option><option value="C-">Conjunction</option><option value="D-">Adverb</option><option value="I-">Interjection</option><option value="N-">Noun</option><option value="P-">Preposition</option><option value="RA">Definite Article</option><option value="RD">Demonstrative Pronoun</option><option value="RI">Interrogative/Indefinite Pronoun</option><option value="RP">Personal Pronoun</option><option value="RR">Relative Pronoun</option><option value="V-">Verb</option><option value="X-">Particle</option></select></label>
 						<label>Person: <select name="person" onchange="validateState(this)"><option value="."></option><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option></select></label>
 						<label>Tense: <select name="tense" onchange="validateState(this)"><option value="."></option><option value="P">Present</option><option value="I">Imperfect</option><option value="F">Future</option><option value="A">Aorist</option><option value="X">Perfect</option><option value="Y">Pluperfect</option></select></label>
@@ -95,8 +95,11 @@
 						<button class="btn btn-success btn-xs" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
 					</div>
 				</div>
+				<div>
+					<label>Book: <select name="book" onchange="changeChapter()"></select></label>
+					<label>Chapter: <select name="chapter" onchange="changeChapter()"></select></label>
+				</div>
 			</form>
-
 
 			<div id="text-div"></div>
 		</div>

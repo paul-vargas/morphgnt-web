@@ -27,4 +27,26 @@
 		</copy>
 	</target>
 	
+	<target name="netbeans-to-jbossas">
+		<echo>Copy Java</echo>
+		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\java\org\paulvargas\greek" overwrite="true" verbose="true">
+			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\java\org\paulvargas\greek">
+				<include name="**/*.*" />
+				<exclude name="**/jboss-web.xml" />
+			</fileset>
+		</copy>
+		<echo>Copy Resources</echo>
+		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\resources\org\paulvargas\greek" overwrite="true" verbose="true">
+			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\resources\org\paulvargas\greek">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<echo>Copy Page</echo>
+		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\webapp\WEB-INF\pages\greek" overwrite="true" verbose="true">
+			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\webapp\WEB-INF\pages\greek">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>	
+	
 </project>

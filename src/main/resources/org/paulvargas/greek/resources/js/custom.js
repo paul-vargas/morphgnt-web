@@ -1,10 +1,42 @@
-$(function () {
+var localConfig = {
+	version: "0.0.1",
+	debug: true,
+	timeout: 30000,
+	book: null,
+	chapter: null,
+	keynameForBook: "greek_vldtn_book",
+	keynameForChapter: "greek_vldtn_chapter"
+};
 
-});
-
-$(window).load(function () {
-	loadVerses(4, 1);
-});
+var books = {
+	"1": {"a": "Matthew", "b": "Matt.", "c": "28"},
+	"2": {"a": "Mark", "b": "Mark", "c": "16"},
+	"3": {"a": "Luke", "b": "Luke", "c": "24"},
+	"4": {"a": "John", "b": "John", "c": "21"},
+	"5": {"a": "Acts", "b": "Acts", "c": "28"},
+	"6": {"a": "Romans", "b": "Rom.", "c": "16"},
+	"7": {"a": "1 Corinthians", "b": "1 Cor.", "c": "16"},
+	"8": {"a": "2 Corinthians", "b": "2 Cor.", "c": "13"},
+	"9": {"a": "Galatians", "b": "Gal.", "c": "6"},
+	"10": {"a": "Ephesians", "b": "Eph.", "c": "6"},
+	"11": {"a": "Philippians", "b": "Phil.", "c": "4"},
+	"12": {"a": "Colossians", "b": "Col.", "c": "4"},
+	"13": {"a": "1 Thessalonians", "b": "1 Thess.", "c": "5"},
+	"14": {"a": "2 Thessalonians", "b": "2 Thess.", "c": "3"},
+	"15": {"a": "1 Timothy", "b": "1 Tim.", "c": "6"},
+	"16": {"a": "2 Timothy", "b": "2 Tim.", "c": "4"},
+	"17": {"a": "Titus", "b": "Titus", "c": "3"},
+	"18": {"a": "Philemon", "b": "Philem.", "c": "1"},
+	"19": {"a": "Hebrews", "b": "Heb.", "c": "13"},
+	"20": {"a": "James", "b": "James", "c": "5"},
+	"21": {"a": "1 Peter", "b": "1 Pet.", "c": "5"},
+	"22": {"a": "2 Peter", "b": "2 Pet.", "c": "3"},
+	"23": {"a": "1 John", "b": "1 John", "c": "5"},
+	"24": {"a": "2 John", "b": "2 John", "c": "1"},
+	"25": {"a": "3 John", "b": "3 John", "c": "1"},
+	"26": {"a": "Jude", "b": "Jude", "c": "1"},
+	"27": {"a": "Revelation", "b": "Rev.", "c": "22"}
+};
 
 var morph = {
 	"sp": {"name": "Part of Speech", "A-": "Adjective", "C-": "Conjunction", "D-": "Adverb", "I-": "Interjection", "N-": "Noun", "P-": "Preposition", "RA": "Definite Article", "RD": "Demonstrative Pronoun", "RI": "Interrogative/Indefinite Pronoun", "RP": "Personal Pronoun", "RR": "Relative Pronoun", "V-": "Verb", "X-": "Particle"},
@@ -17,6 +49,44 @@ var morph = {
 	"gender": {"name": "Gender", ".": "", "M": "Masculine", "F": "Feminine", "N": "Neuter"},
 	"degree": {"name": "Degree", ".": "", "C": "Comparative", "S": "Superlative"}
 };
+
+$(function () {
+
+	// Default settings for AJAX calls
+	$.ajaxSetup({
+		timeout: localConfig.timeout,
+		cache: false
+	});
+
+	loadDefaults();
+
+	var $book = $("select[name=book]");
+	$.each(books, function (name, obj) {
+		var $option = $("<option/>").text(obj.a).val(name).data(obj);
+		$book.append($option);
+	});
+	$book.val(localConfig.book);
+	var $chapter = $("select[name=chapter]");
+	for (var i = 0, max = parseInt(books[localConfig.book].c); i < max; i++) {
+		var $option = $("<option/>").text(i + 1).val(i + 1);
+		$chapter.append($option);
+	}
+	$chapter.val(localConfig.chapter);
+});
+
+$(window).load(function () {
+	loadVerses(localConfig.book, localConfig.chapter);
+});
+
+
+
+/**
+ * Load defaults from the local storage.
+ */
+function loadDefaults() {
+	localConfig.book = localStorage.getItem(localConfig.keynameForBook) || "1";
+	localConfig.chapter = localStorage.getItem(localConfig.keynameForChapter) || "1";
+}
 
 function replaceChars(ele) {
 	var text = $.trim($(ele).val());
@@ -50,7 +120,7 @@ function replaceChars(ele) {
 
 function parseMorphology(obj) {
 	var t2 = obj.t2;
-	var t4 = obj.t4; 
+	var t4 = obj.t4;
 	var spcd = obj.spcd;
 	var sp = spcd.substr(0, 2);
 	var cd = spcd.substr(2, 8);
@@ -81,47 +151,6 @@ function parseMorphology(obj) {
 	}
 	content += " (" + t4 + ")</p>";
 	return content;
-}
-
-
-function loadVerses(book, chapter) {
-	$.ajax({
-		url: "greek/verses/" + book + "/" + chapter,
-		dataType: "json",
-		beforeSend: function (xhr) {
-
-		},
-		success: function (data, textStatus, jqXHR) {
-			var $div = $("#text-div").empty();
-			var v = 0;
-			$.each(data, function (index, obj) {
-				if (v !== obj.v) {
-					v = obj.v;
-					var $small = $("<small/>").append($("<strong/>").text(v));
-					$div.append($small);
-					$div.append(" ");
-				}
-
-				var $span = $("<span/>").data(obj)
-						//.attr({"class":"tooltip0","title":obj.t2,"data-original-title":obj.t2})
-						.attr({title: parseMorphology(obj), class: "greek", "data-html": true})
-						.text(obj.t1);
-				$div.append($span);
-				$div.append(" ");
-			});
-
-			$div.find("span").tooltip();
-
-
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-
-		},
-		complete: function (jqXHR, textStatus) {
-
-		}
-	});
-
 }
 
 function add() {
@@ -254,14 +283,74 @@ function highlight() {
 			$spans.each(function () {
 				var spcd = $(this).data("spcd");
 				if (regex.test(spcd)) {
-					$(this).css({"background-color": color, "padding": ".1em", "box-shadow": "0 0 .3em Gray"});
+					$(this).css({"background-color": color, "padding": ".1em .3em", "box-shadow": "0 0 .3em Gray"});
 				}
 			});
 		}
 	});
-
-
-
-
 }
 
+function changeChapter() {
+	var $book = $("select[name=book]");
+	var $chapter = $("select[name=chapter]");
+	var book = $book.val();
+	if (book !== localConfig.book) {
+		$chapter.empty();
+		for (var i = 0, max = parseInt(books[localConfig.book].c); i < max; i++) {
+			var $option = $("<option/>").text(i + 1).val(i + 1);
+			$chapter.append($option);
+		}		
+	}
+	var chapter = $chapter.val();
+	loadVerses(book, chapter);
+}
+
+function loadVerses(book, chapter) {
+	
+
+	
+	$.ajax({
+		url: "greek/verses/" + book + "/" + chapter,
+		dataType: "json",
+		beforeSend: function (xhr) {
+
+		},
+		success: function (data, textStatus, jqXHR) {
+			var $div = $("#text-div").empty();
+			var v = 0;
+			$.each(data, function (index, obj) {
+				if (v !== obj.v) {
+					v = obj.v;
+					var $small = $("<small/>").append($("<strong/>").text(v));
+					$div.append($small);
+					$div.append(" ");
+				}
+
+				var $span = $("<span/>").data(obj)
+						//.attr({"class":"tooltip0","title":obj.t2,"data-original-title":obj.t2})
+						.attr({title: parseMorphology(obj), class: "greek", "data-html": true})
+						.text(obj.t1);
+				$div.append($span);
+				$div.append(" ");
+			});
+
+			$div.find("span").tooltip();
+			
+			highlight();
+
+			localConfig.book = book;
+			localConfig.chapter = chapter;
+	
+			localStorage.setItem(localConfig.keynameForBook, book);
+			localStorage.setItem(localConfig.keynameForChapter, chapter);
+
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+
+		},
+		complete: function (jqXHR, textStatus) {
+
+		}
+	});
+
+}
