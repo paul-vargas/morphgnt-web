@@ -66,12 +66,17 @@ $(function () {
 		$book.append($option);
 	});
 	$book.val(localConfig.book);
-	var $chapter = $("select[name=chapter]");
+	var $chapter = $("input[name=chapter]");
+	var $chapters = $("#chapters");
 	for (var i = 0, max = parseInt(books[localConfig.book].c); i < max; i++) {
-		var $option = $("<option/>").text(i + 1).val(i + 1);
-		$chapter.append($option);
+		var $option = $("<option/>").val(i + 1);
+		$chapters.append($option);
 	}
+	$chapter.attr("max", books[localConfig.book].c);
 	$chapter.val(localConfig.chapter);
+
+
+
 });
 
 $(window).load(function () {
@@ -292,14 +297,16 @@ function highlight() {
 
 function changeChapter() {
 	var $book = $("select[name=book]");
-	var $chapter = $("select[name=chapter]");
+	var $chapter = $("input[name=chapter]");
+	var $chapters = $("#chapters");
 	var book = $book.val();
 	if (book !== localConfig.book) {
-		$chapter.empty();
-		for (var i = 0, max = parseInt(books[localConfig.book].c); i < max; i++) {
-			var $option = $("<option/>").text(i + 1).val(i + 1);
-			$chapter.append($option);
-		}		
+		$chapters.empty();
+		for (var i = 0, max = parseInt(books[book].c); i < max; i++) {
+			var $option = $("<option/>").val(i + 1);
+			$chapters.append($option);
+		}
+		$chapter.attr("max", books[book].c);
 	}
 	var chapter = $chapter.val();
 	loadVerses(book, chapter);

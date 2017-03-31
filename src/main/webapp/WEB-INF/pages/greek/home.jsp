@@ -15,7 +15,6 @@
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="greek/assets/css/bootstrap-colorselector.css">
 		<link rel="stylesheet" href="greek/assets/css/custom.css?v=1">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -97,7 +96,7 @@
 				</div>
 				<div>
 					<label>Book: <select name="book" onchange="changeChapter()"></select></label>
-					<label>Chapter: <select name="chapter" onchange="changeChapter()"></select></label>
+					<label>Chapter: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter()"><datalist id="chapters"></datalist></label>
 				</div>
 			</form>
 
@@ -108,6 +107,5 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="greek/assets/js/custom.js?v=1"></script>
-		<script src="greek/assets/js/bootstrap-colorselector.js?v=1"></script>
 	</body>
 </html>
