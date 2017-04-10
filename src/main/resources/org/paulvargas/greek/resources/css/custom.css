@@ -12,3 +12,14 @@ button.greek {
 	word-break: keep-all;
 	white-space: nowrap;
 }
+
+body {
+	/*background-color: #070D17;
+	background-image: linear-gradient(top, #090D15 0%, #070D17 50%,#090D15 100%);*/
+	color: #7E858B;
+	background-color: black;
+}
+
+h1 {
+	color: #3980D0;
+}
