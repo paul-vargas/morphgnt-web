@@ -54,8 +54,6 @@
 						<label>Lemma: <input class="greek" type="text" name="t4" value="" onchange="replaceChars(this); validateState(this);"></label>
 						<button class="btn btn-default btn-xs" type="button" onclick="clr(this)"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Clear</button>
 						<button class="btn btn-default btn-xs" type="button" onclick="del(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-						<button class="btn btn-default btn-xs" type="button" onclick="toUp(this)" aria-label="Up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-						<button class="btn btn-default btn-xs" type="button" onclick="toDown(this)" aria-label="Down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 					</div>
 				</div><%--
 				<p class="text-center hidden-xs">
@@ -90,7 +88,8 @@
 						<button class="btn btn-primary" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Highlight</button>
 					</div>
 					<div class="col-xs-8 text-right">
-						<button id="modal-button" type="button" class="btn btn-default btn-xs hidden" data-toggle="modal" data-target="#modal-div"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span> Show SQL</button>
+						<button class="btn btn-default btn-xs" type="button" onclick="decrement()">A-</button>
+						<button class="btn btn-default btn-xs" type="button" onclick="increment()">A+</button>
 						<button class="btn btn-success btn-xs" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
 					</div>
 				</div>

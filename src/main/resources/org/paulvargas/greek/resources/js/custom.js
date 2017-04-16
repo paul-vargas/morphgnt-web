@@ -95,32 +95,32 @@ function loadDefaults() {
 
 function replaceChars(ele) {
 	var text = $.trim($(ele).val());
-	text = text.replace(/[ΆΑάαἀἁἂἃἄἅἆἇἈἉἊἋἌἍἎἏὰάᾀᾁᾂᾃᾄᾅᾆᾇᾈᾉᾊᾋᾌᾍᾎᾏᾰᾱᾲᾳᾴᾶᾷᾸᾹᾺΆᾼ]/, "α");
-	text = text.replace(/[Ββᵦ]/, "β");
-	text = text.replace(/[Γγᴦᵞᵧ]/, "γ");
-	text = text.replace(/[Δδ]/, "δ");
-	text = text.replace(/[ΈΕέεἐἑἒἓἔἕἘἙἚἛἜἝὲέῈΈ]/, "ε");
-	text = text.replace(/[Ζζ]/, "ζ");
-	text = text.replace(/[ΉΗήηἠἡἢἣἤἥἦἧἨἩἪἫἬἭἮἯὴήᾐᾑᾒᾓᾔᾕᾖᾗᾘᾙᾚᾛᾜᾝᾞᾟῂῃῄῆῇῊΉῌ]/, "η");
-	text = text.replace(/[Θθ]/, "θ");
-	text = text.replace(/[ΊΐΙΪίιϊἰἱἲἳἴἵἶἷἸἹἺἻἼἽἾἿὶίῐῑῒΐῖῗῘῙῚΊ℩]/, "ι");
-	text = text.replace(/[Κκ]/, "κ");
-	text = text.replace(/[Λλᴧ]/, "λ");
-	text = text.replace(/[Μμ]/, "μ");
-	text = text.replace(/[Νν]/, "ν");
-	text = text.replace(/[Ξξ]/, "ξ");
-	text = text.replace(/[ΌΟοόὀὁὂὃὄὅὈὉὊὋὌὍὸόῸΌ]/, "ο");
-	text = text.replace(/[Ππᴨ]/, "π");
-	text = text.replace(/[ΡρᴩᵨῤῥῬ]/, "ρ");
-	text = text.replace(/[Σς]/, "ς");
-	text = text.replace(/[σ]/, "σ");
-	text = text.replace(/[Ττ]/, "τ");
-	text = text.replace(/[ΎΥΫΰυϋύὐὑὒὓὔὕὖὗὙὛὝὟὺύῠῡῢΰῦῧῨῩῪΎ]/, "υ");
-	text = text.replace(/[Φφᵠᵩ]/, "φ");
-	text = text.replace(/[Χχᵪ]/, "χ");
-	text = text.replace(/[Ψψᴪ]/, "ψ");
-	text = text.replace(/[ΏΩωώὠὡὢὣὤὥὦὧὨὩὪὫὬὭὮὯὼώᾠᾡᾢᾣᾤᾥᾦᾧᾨᾩᾪᾫᾬᾭᾮᾯῲῳῴῶῷῺΏῼ]/, "ω");
-	text = text.replace(/[^α-ω%]/, "");
+	text = text.replace(/[ΆΑάαἀἁἂἃἄἅἆἇἈἉἊἋἌἍἎἏὰάᾀᾁᾂᾃᾄᾅᾆᾇᾈᾉᾊᾋᾌᾍᾎᾏᾰᾱᾲᾳᾴᾶᾷᾸᾹᾺΆᾼ]/g, "α");
+	text = text.replace(/[Ββᵦ]/g, "β");
+	text = text.replace(/[Γγᴦᵞᵧ]/g, "γ");
+	text = text.replace(/[Δδ]/g, "δ");
+	text = text.replace(/[ΈΕέεἐἑἒἓἔἕἘἙἚἛἜἝὲέῈΈ]/g, "ε");
+	text = text.replace(/[Ζζ]/g, "ζ");
+	text = text.replace(/[ΉΗήηἠἡἢἣἤἥἦἧἨἩἪἫἬἭἮἯὴήᾐᾑᾒᾓᾔᾕᾖᾗᾘᾙᾚᾛᾜᾝᾞᾟῂῃῄῆῇῊΉῌ]/g, "η");
+	text = text.replace(/[Θθ]/g, "θ");
+	text = text.replace(/[ΊΐΙΪίιϊἰἱἲἳἴἵἶἷἸἹἺἻἼἽἾἿὶίῐῑῒΐῖῗῘῙῚΊ℩]/g, "ι");
+	text = text.replace(/[Κκ]/g, "κ");
+	text = text.replace(/[Λλᴧ]/g, "λ");
+	text = text.replace(/[Μμ]/g, "μ");
+	text = text.replace(/[Νν]/g, "ν");
+	text = text.replace(/[Ξξ]/g, "ξ");
+	text = text.replace(/[ΌΟοόὀὁὂὃὄὅὈὉὊὋὌὍὸόῸΌ]/g, "ο");
+	text = text.replace(/[Ππᴨ]/g, "π");
+	text = text.replace(/[ΡρᴩᵨῤῥῬ]/g, "ρ");
+	text = text.replace(/[Σς]/g, "ς");
+	text = text.replace(/[σ]/g, "σ");
+	text = text.replace(/[Ττ]/g, "τ");
+	text = text.replace(/[ΎΥΫΰυϋύὐὑὒὓὔὕὖὗὙὛὝὟὺύῠῡῢΰῦῧῨῩῪΎ]/g, "υ");
+	text = text.replace(/[Φφᵠᵩ]/g, "φ");
+	text = text.replace(/[Χχᵪ]/g, "χ");
+	text = text.replace(/[Ψψᴪ]/g, "ψ");
+	text = text.replace(/[ΏΩωώὠὡὢὣὤὥὦὧὨὩὪὫὬὭὮὯὼώᾠᾡᾢᾣᾤᾥᾦᾧᾨᾩᾪᾫᾬᾭᾮᾯῲῳῴῶῷῺΏῼ]/g, "ω");
+	text = text.replace(/[^α-ω%]/g, "");
 	$(ele).val(text);
 }
 
@@ -183,50 +183,18 @@ function clr(arg) {
 	$panel.find("select").filter("[name=sp],[name=color]").val("");
 }
 
-function toUp(arg) {
-	var element = $(arg).parents(".thepanel")[0];
-	var $element = $(element);
-	if (element.previousElementSibling) {
-		var y1 = $(element.previousElementSibling).offset().top;
-		var y2 = y1 + $element.height();
-		var visibleAreaStart = $(window).scrollTop();
-		var visibleAreaEnd = visibleAreaStart + window.innerHeight;
-		element.parentNode.insertBefore(element, element.previousElementSibling);
-		if (y1 < visibleAreaStart || y2 > visibleAreaEnd) {
-			$("html,body").animate({
-				scrollTop: y1 - 5
-			}, "slow", function () {
-				$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-			});
-		} else {
-			$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-		}
-	} else {
-		$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-	}
+function increment() {
+	var $div = $("#text-div");
+    var fontSize = parseFloat($div.css("font-size").split("px")[0]);
+    var fontInt = fontSize + 1;
+    $div.css("font-size", fontInt + "px");
 }
 
-function toDown(arg) {
-	var element = $(arg).parents(".thepanel")[0];
-	var $element = $(element);
-	if (element.nextElementSibling) {
-		var y1 = $(element.nextElementSibling).offset().top;
-		var y2 = y1 + $element.height();
-		var visibleAreaStart = $(window).scrollTop();
-		var visibleAreaEnd = visibleAreaStart + window.innerHeight;
-		element.parentNode.insertBefore(element.nextElementSibling, element);
-		if (y1 < visibleAreaStart || y2 > visibleAreaEnd) {
-			$("html,body").animate({
-				scrollTop: y1 - 5
-			}, "slow", function () {
-				$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-			});
-		} else {
-			$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-		}
-	} else {
-		$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-	}
+function decrement() {
+	var $div = $("#text-div");
+    var fontSize = parseFloat($div.css("font-size").split("px")[0]);
+    var fontInt = fontSize - 1;
+    $div.css("font-size", fontInt + "px");
 }
 
 function validateState(ele) {
