@@ -5,6 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="org.paulvargas.greek.resources.i18n.greek" />
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -26,34 +31,48 @@
 	</head>
 	<body>
 		<div class="container-fluid">
+
 			<h1>SBLGNT</h1>
+
+			<div class="form-group text-right">
+				<form>
+
+					<select id="language" name="language" onchange="submit()">
+						<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+						<option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
+					</select>
+					<button class="btn btn-default btn-xs" type="button" onclick="decrement()">A-</button>
+					<button class="btn btn-default btn-xs" type="button" onclick="increment()">A+</button>
+					<button class="btn btn-success btn-xs" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <fmt:message key="button.add" /></button>
+				</form>
+			</div>
 
 
 			<form onsubmit="return false;">
 				<div>
 					<div class="well well-sm thepanel">
-						<label>Color: <select name="color" onchange="validateState(this)"> <option></option> 
-								<option value="#FF9999" style="background-color: #FF9999">Red</option>
-								<option value="#FFDBBB" style="background-color: #FFDBBB">Orange</option>
-								<option value="#FFFFBB" style="background-color: #FFFFBB">Yellow</option>
-								<option value="#BBFFBB" style="background-color: #BBFFBB">Green</option>
-								<option value="#BBFFFF" style="background-color: #BBFFFF">Cyan</option>
-								<option value="#FFBBFF" style="background-color: #FFBBFF">Purple</option>
-								<option value="#929292" style="background-color: #929292">Gray</option>
+						<label><fmt:message key="color.name" />: <select name="color" onchange="validateState(this)"> <option></option> 
+								<option value="#FF9999" style="background-color: #FF9999"><fmt:message key="color.red" /></option>
+								<option value="#FFDBBB" style="background-color: #FFDBBB"><fmt:message key="color.orange" /></option>
+								<option value="#FFFFBB" style="background-color: #FFFFBB"><fmt:message key="color.yellow" /></option>
+								<option value="#BBFFBB" style="background-color: #BBFFBB"><fmt:message key="color.green" /></option>
+								<option value="#BBFFFF" style="background-color: #BBFFFF"><fmt:message key="color.cyan" /></option>
+								<option value="#FFBBFF" style="background-color: #FFBBFF"><fmt:message key="color.purple" /></option>
+								<option value="#929292" style="background-color: #929292"><fmt:message key="color.gray" /></option>
 							</select></label>
-						<label>Part of Speech: <select name="sp" onchange="validateState(this)"><option></option><option value="A-">Adjective</option><option value="C-">Conjunction</option><option value="D-">Adverb</option><option value="I-">Interjection</option><option value="N-">Noun</option><option value="P-">Preposition</option><option value="RA">Definite Article</option><option value="RD">Demonstrative Pronoun</option><option value="RI">Interrogative/Indefinite Pronoun</option><option value="RP">Personal Pronoun</option><option value="RR">Relative Pronoun</option><option value="V-">Verb</option><option value="X-">Particle</option></select></label>
-						<label>Person: <select name="person" onchange="validateState(this)"><option value="."></option><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option></select></label>
-						<label>Tense: <select name="tense" onchange="validateState(this)"><option value="."></option><option value="P">Present</option><option value="I">Imperfect</option><option value="F">Future</option><option value="A">Aorist</option><option value="X">Perfect</option><option value="Y">Pluperfect</option></select></label>
-						<label>Voice: <select name="voice" onchange="validateState(this)"><option value="."></option><option value="A">Active</option><option value="M">Middle</option><option value="P">Passive</option></select></label>
-						<label>Mood: <select name="mood" onchange="validateState(this)"><option value="."></option><option value="I">Indicative</option><option value="D">Imperative</option><option value="S">Subjunctive</option><option value="O">Optative</option><option value="N">Infinitive</option><option value="P">Participle</option></select></label>
-						<label>Case: <select name="case" onchange="validateState(this)"><option value="."></option><option value="N">Nominative</option><option value="G">Genitive</option><option value="D">Dative</option><option value="A">Accusative</option><option value="V">Vocative</option></select></label>
-						<label>Number: <select name="number" onchange="validateState(this)"><option value="."></option><option value="S">Singular</option><option value="P">Plural</option></select></label>
-						<label>Gender: <select name="gender" onchange="validateState(this)"><option value="."></option><option value="M">Masculine</option><option value="F">Feminine</option><option value="N">Neuter</option></select></label>
-						<label>Degree: <select name="degree" onchange="validateState(this)"><option value="."></option><option value="C">Comparative</option><option value="S">Superlative</option></select></label>
+						<label><fmt:message key="morph.sp.name" />: <select name="sp" onchange="validateState(this)"><option></option><option value="A-"><fmt:message key="morph.sp.adjective" /></option><option value="C-"><fmt:message key="morph.sp.conjunction" /></option><option value="D-"><fmt:message key="morph.sp.adverb" /></option><option value="I-"><fmt:message key="morph.sp.interjection" /></option><option value="N-"><fmt:message key="morph.sp.noun" /></option><option value="P-"><fmt:message key="morph.sp.preposition" /></option><option value="RA"><fmt:message key="morph.sp.definite.article" /></option><option value="RD"><fmt:message key="morph.sp.demonstrative.pronoun" /></option><option value="RI"><fmt:message key="morph.sp.interrogative.indefinite.pronoun" /></option><option value="RP"><fmt:message key="morph.sp.personal.pronoun" /></option><option value="RR"><fmt:message key="morph.sp.relative.pronoun" /></option><option value="V-"><fmt:message key="morph.sp.verb" /></option><option value="X-"><fmt:message key="morph.sp.particle" /></option></select></label>
+						<label><fmt:message key="morph.person.name" />: <select name="person" onchange="validateState(this)"><option value="."></option><option value="1"><fmt:message key="morph.person.1st" /></option><option value="2"><fmt:message key="morph.person.2nd" /></option><option value="3"><fmt:message key="morph.person.3rd" /></option></select></label>
+						<label><fmt:message key="morph.tense.name" />: <select name="tense" onchange="validateState(this)"><option value="."></option><option value="P"><fmt:message key="morph.tense.present" /></option><option value="I"><fmt:message key="morph.tense.imperfect" /></option><option value="F"><fmt:message key="morph.tense.future" /></option><option value="A"><fmt:message key="morph.tense.aorist" /></option><option value="X"><fmt:message key="morph.tense.perfect" /></option><option value="Y"><fmt:message key="morph.tense.pluperfect" /></option></select></label>
+						<label><fmt:message key="morph.voice.name" />: <select name="voice" onchange="validateState(this)"><option value="."></option><option value="A"><fmt:message key="morph.voice.active" /></option><option value="M"><fmt:message key="morph.voice.middle" /></option><option value="P"><fmt:message key="morph.voice.oassive" /></option></select></label>
+						<label><fmt:message key="morph.mood.name" />: <select name="mood" onchange="validateState(this)"><option value="."></option><option value="I"><fmt:message key="morph.mood.indicative" /></option><option value="D"><fmt:message key="morph.mood.imperative" /></option><option value="S"><fmt:message key="morph.mood.subjunctive" /></option><option value="O"><fmt:message key="morph.mood.optative" /></option><option value="N"><fmt:message key="morph.mood.infinitive" /></option><option value="P"><fmt:message key="morph.mood.participle" /></option></select></label>
+						<label><fmt:message key="morph.case.name" />: <select name="case" onchange="validateState(this)"><option value="."></option><option value="N"><fmt:message key="morph.case.nominative" /></option><option value="G"><fmt:message key="morph.case.genitive" /></option><option value="D"><fmt:message key="morph.case.dative" /></option><option value="A"><fmt:message key="morph.case.accusative" /></option><option value="V"><fmt:message key="morph.case.vocative" /></option></select></label>
+						<label><fmt:message key="morph.number.name" />: <select name="number" onchange="validateState(this)"><option value="."></option><option value="S"><fmt:message key="morph.number.singular" /></option><option value="P"><fmt:message key="morph.number.plural" /></option></select></label>
+						<label><fmt:message key="morph.gender.name" />: <select name="gender" onchange="validateState(this)"><option value="."></option><option value="M"><fmt:message key="morph.gender.masculine" /></option><option value="F"><fmt:message key="morph.gender.feminine" /></option><option value="N"><fmt:message key="morph.gender.neuter" /></option></select></label>
+						<label><fmt:message key="morph.degree.name" />: <select name="degree" onchange="validateState(this)"><option value="."></option><option value="C"><fmt:message key="morph.degree.comparative" /></option><option value="S"><fmt:message key="morph.degree.superlative" /></option></select></label><%--
 						<label>Text: <input class="greek" type="text" name="t2" value="" onchange="replaceChars(this); validateState(this);"></label>
-						<label>Lemma: <input class="greek" type="text" name="t4" value="" onchange="replaceChars(this); validateState(this);"></label>
-						<button class="btn btn-default btn-xs" type="button" onclick="clr(this)"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Clear</button>
-						<button class="btn btn-default btn-xs" type="button" onclick="del(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+						<label>Lemma: <input class="greek" type="text" name="t4" value="" onchange="replaceChars(this); validateState(this);"></label>--%>
+						<button class="btn btn-default btn-xs" type="button" onclick="clr(this)"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> <fmt:message key="button.clear" /></button>
+						<button class="btn btn-default btn-xs" type="button" onclick="del(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> <fmt:message key="button.delete" /></button>
 					</div>
 				</div><%--
 				<p class="text-center hidden-xs">
@@ -83,19 +102,12 @@
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('ω')" title="OMEGA">ω</button>
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('%')" title="PERCENT SIGN">%</button>
 				</p>--%>
-				<div class="row form-group">
-					<div class="col-xs-4 text-left">
-						<button class="btn btn-primary" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Highlight</button>
-					</div>
-					<div class="col-xs-8 text-right">
-						<button class="btn btn-default btn-xs" type="button" onclick="decrement()">A-</button>
-						<button class="btn btn-default btn-xs" type="button" onclick="increment()">A+</button>
-						<button class="btn btn-success btn-xs" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
-					</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <fmt:message key="button.highlight" /></button>
 				</div>
 				<div>
-					<label>Book: <select name="book" onchange="changeChapter()"></select></label>
-					<label>Chapter: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter()"><datalist id="chapters"></datalist></label>
+					<label><fmt:message key="book.name" />: <select name="book" onchange="changeChapter()"></select></label>
+					<label><fmt:message key="chapter.name" />: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter()"><datalist id="chapters"></datalist></label>
 				</div>
 			</form>
 

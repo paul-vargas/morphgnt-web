@@ -16,3 +16,11 @@ button.greek {
 .tooltip {
 	font-size: inherit;
 }
+
+.tooltip-inner {
+	max-width: 500px;
+}
+
+.tooltip-inner p {
+	margin: 0;
+}

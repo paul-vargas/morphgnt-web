@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.ServletContext;
@@ -20,7 +21,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import org.omnifaces.filter.CacheControlFilter;
+
 import org.paulvargas.greek.ejb.GreekEJB;
 import org.paulvargas.tools.util.ClassLoaderUtil;
 
@@ -90,5 +91,15 @@ public class GreekResource {
 			LOG.log(Level.SEVERE, "There was an error getting the stylesheet.", e);
 		}
 	}
+	
+	@GET
+	@Path("assets/js/custom.js")
+	public void getCustomJs(@Context HttpServletRequest request, @Context HttpServletResponse response, @Context ServletContext context) {
+		try {
+			request.getRequestDispatcher("/WEB-INF/pages/greek/custom.js.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			LOG.log(Level.SEVERE, "There was an error getting the greek's custom.js", e);
+		}
+	}	
 
 }
