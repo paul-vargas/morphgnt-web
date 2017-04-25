@@ -16,8 +16,10 @@ var localConfig = {
 	timeout: 30000,
 	book: null,
 	chapter: null,
+	fontsize: null,
 	keynameForBook: "greek_vldtn_book",
-	keynameForChapter: "greek_vldtn_chapter"
+	keynameForChapter: "greek_vldtn_chapter",
+	keynameForFontSize: "greek_vldtn_fontsize"
 };
 
 var books = {
@@ -87,7 +89,7 @@ $(function () {
 	$chapter.attr("max", books[localConfig.book].c);
 	$chapter.val(localConfig.chapter);
 
-
+	$("#text-div").css("font-size", localConfig.fontsize);
 
 });
 
@@ -103,6 +105,7 @@ $(window).load(function () {
 function loadDefaults() {
 	localConfig.book = localStorage.getItem(localConfig.keynameForBook) || "1";
 	localConfig.chapter = localStorage.getItem(localConfig.keynameForChapter) || "1";
+	localConfig.fontsize = localStorage.getItem(localConfig.keynameForFontSize) || "inherit";
 }
 
 function replaceChars(ele) {
@@ -200,6 +203,7 @@ function increment() {
     var fontSize = parseFloat($div.css("font-size").split("px")[0]);
     var fontInt = fontSize + 1;
     $div.css("font-size", fontInt + "px");
+	localStorage.setItem(localConfig.keynameForFontSize, fontInt + "px");
 }
 
 function decrement() {
@@ -207,6 +211,7 @@ function decrement() {
     var fontSize = parseFloat($div.css("font-size").split("px")[0]);
     var fontInt = fontSize - 1;
     $div.css("font-size", fontInt + "px");
+	localStorage.setItem(localConfig.keynameForFontSize, fontInt + "px");
 }
 
 function validateState(ele) {
@@ -310,6 +315,9 @@ function loadVerses(book, chapter) {
 			var v = 0;
 			$.each(data, function (index, obj) {
 				if (v !== obj.v) {
+					if (v > 0) {
+						$div.append("<br/>");
+					}
 					v = obj.v;
 					var $small = $("<small/>").append($("<strong/>").text(v));
 					$div.append($small);
@@ -318,7 +326,7 @@ function loadVerses(book, chapter) {
 
 				var $span = $("<span/>").data(obj)
 						//.attr({"class":"tooltip0","title":obj.t2,"data-original-title":obj.t2})
-						.attr({title: parseMorphology(obj), class: "greek", "data-html": true})
+						.attr({title: parseMorphology(obj), class: "greek", "data-html": true, "data-trigger": "hover focus"})
 						.text(obj.t1);
 				$div.append($span);
 				$div.append(" ");
