@@ -281,7 +281,7 @@ function highlight() {
 	});
 }
 
-function changeChapter() {
+function changeChapter(chapter) {
 	var $book = $("select[name=book]");
 	var $chapter = $("input[name=chapter]");
 	var $chapters = $("#chapters");
@@ -294,9 +294,9 @@ function changeChapter() {
 		}
 		$chapter.attr("max", books[book].c);
 		var min = $chapter.attr("min");
-		$chapter.val(min);
+		$chapter.val(chapter || min);
 	}
-	var chapter = $chapter.val();
+	chapter = $chapter.val();
 	loadVerses(book, chapter);
 }
 
@@ -352,4 +352,46 @@ function loadVerses(book, chapter) {
 		}
 	});
 
+}
+
+function previous() {
+	var $book = $("select[name=book]");
+	var $chapter = $("input[name=chapter]");
+	var book = $book.val();
+	var chapter = $chapter.val();
+	if (chapter === "1" && book === "1") {
+		book = "27";
+		chapter = "22";
+	} else if (chapter === "1") {
+		book = parseInt(book) - 1;
+		book = book.toString();
+		chapter = books[book].c;
+	} else {
+		chapter = parseInt(chapter) - 1;
+		chapter = chapter.toString();
+	}
+	$book.val(book);
+	$chapter.val(chapter);
+	changeChapter(chapter);
+}
+
+function next() {
+	var $book = $("select[name=book]");
+	var $chapter = $("input[name=chapter]");
+	var book = $book.val();
+	var chapter = $chapter.val();
+	if (chapter === books[book].c && book === "27") {
+		book = "1";
+		chapter = "1";
+	} else if (chapter === books[book].c) {
+		book = parseInt(book) + 1;
+		book = book.toString();
+		chapter = "1";
+	} else {
+		chapter = parseInt(chapter) + 1;
+		chapter = chapter.toString();
+	}
+	$book.val(book);
+	$chapter.val(chapter);
+	changeChapter(chapter);
 }

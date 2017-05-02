@@ -106,8 +106,20 @@
 					<button class="btn btn-primary" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <fmt:message key="button.highlight" /></button>
 				</div>
 				<div>
-					<label><fmt:message key="book.name" />: <select name="book" onchange="changeChapter()"></select></label>
-					<label><fmt:message key="chapter.name" />: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter()"><datalist id="chapters"></datalist></label>
+
+
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-8 text-left">
+						<label><fmt:message key="book.name" />: <select name="book" onchange="changeChapter()"></select></label>
+						<label><fmt:message key="chapter.name" />: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter()"><datalist id="chapters"></datalist></label>
+					</div>
+					<div class="col-xs-4 text-right">
+						<div class="btn-group" role="group">
+							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+						</div>
+					</div>
 				</div>
 			</form>
 
