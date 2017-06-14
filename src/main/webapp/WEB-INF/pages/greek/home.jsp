@@ -33,6 +33,8 @@
 		<div class="container-fluid">
 
 			<h1>SBLGNT</h1>
+			
+			<div id="collapse-div" class="collapse">
 
 			<div class="form-group text-right">
 				<form>
@@ -41,9 +43,8 @@
 						<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
 						<option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
 					</select>
-					<button class="btn btn-default btn-xs" type="button" onclick="decrement()">A-</button>
-					<button class="btn btn-default btn-xs" type="button" onclick="increment()">A+</button>
 					<button class="btn btn-success btn-xs" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <fmt:message key="button.add" /></button>
+					<button class="btn btn-primary btn-xs" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <fmt:message key="button.highlight" /></button>
 				</form>
 			</div>
 
@@ -73,6 +74,8 @@
 						<label>Lemma: <input class="greek" type="text" name="t4" value="" onchange="replaceChars(this); validateState(this);"></label>--%>
 						<button class="btn btn-default btn-xs" type="button" onclick="clr(this)"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> <fmt:message key="button.clear" /></button>
 						<button class="btn btn-default btn-xs" type="button" onclick="del(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> <fmt:message key="button.delete" /></button>
+						<button class="btn btn-default btn-xs" type="button" onclick="toUp(this)" aria-label="Up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+						<button class="btn btn-default btn-xs" type="button" onclick="toDown(this)" aria-label="Down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 					</div>
 				</div><%--
 				<p class="text-center hidden-xs">
@@ -102,12 +105,10 @@
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('ω')" title="OMEGA">ω</button>
 					<button type="button" class="btn btn-default btn-xs greek" onclick="insertAtCursor('%')" title="PERCENT SIGN">%</button>
 				</p>--%>
-				<div class="form-group">
-					<button class="btn btn-primary" type="button" onclick="highlight(this)" data-loading-text="Searching..."><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <fmt:message key="button.highlight" /></button>
-				</div>
-				<div>
-
-
+			</form>
+			</div>
+				<div class="form-group text-right">
+					<a href="#collapse-div" data-toggle="collapse"><fmt:message key="link.collapse" /></a>
 				</div>
 				<div class="row form-group">
 					<div class="col-xs-8 text-left">
@@ -116,12 +117,16 @@
 					</div>
 					<div class="col-xs-4 text-right">
 						<div class="btn-group" role="group">
+							<button class="btn btn-default btn-sm" type="button" onclick="decrement()"><span class="glyphicon glyphicon-font" aria-hidden="true"></span><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+							<button class="btn btn-default btn-sm" type="button" onclick="increment()"><span class="glyphicon glyphicon-font" aria-hidden="true"></span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+						</div>
+						<div class="btn-group" role="group">
 							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
 							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
 						</div>
 					</div>
 				</div>
-			</form>
+			
 
 			<div id="text-div"></div>
 		</div>

@@ -180,6 +180,7 @@ function add() {
 	$panel.find("select").removeAttr("style");
 	$panel.find("select").not("[name=sp],[name=col]").val(".");
 	$panel.find("select").filter("[name=sp],[name=color]").val("");
+	$panel.find("select").filter("[name=color]").val("#929292").css("border", "1px solid Blue").css("background-color", "#929292");
 	$(".thepanel").last().after($panel);
 }
 
@@ -196,6 +197,51 @@ function clr(arg) {
 	$panel.find("select").removeAttr("style");
 	$panel.find("select").not("[name=sp],[name=col]").val(".");
 	$panel.find("select").filter("[name=sp],[name=color]").val("");
+}
+
+function toUp(arg) {
+	var element = $(arg).parents(".thepanel")[0];
+	var $element = $(element);
+	if (element.previousElementSibling) {
+		var y1 = $(element.previousElementSibling).offset().top;
+		var y2 = y1 + $element.height();
+		var visibleAreaStart = $(window).scrollTop();
+		var visibleAreaEnd = visibleAreaStart + window.innerHeight;
+		element.parentNode.insertBefore(element, element.previousElementSibling);
+		if (y1 < visibleAreaStart || y2 > visibleAreaEnd) {
+			$("html,body").animate({
+				scrollTop: y1 - 5
+			}, "slow", function() {
+				$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+			});
+		} else {
+			$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		}
+	} else {
+		$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+	}
+}
+function toDown(arg) {
+	var element = $(arg).parents(".thepanel")[0];
+	var $element = $(element);
+	if (element.nextElementSibling) {
+		var y1 = $(element.nextElementSibling).offset().top;
+		var y2 = y1 + $element.height();
+		var visibleAreaStart = $(window).scrollTop();
+		var visibleAreaEnd = visibleAreaStart + window.innerHeight;
+		element.parentNode.insertBefore(element.nextElementSibling, element);
+		if (y1 < visibleAreaStart || y2 > visibleAreaEnd) {
+			$("html,body").animate({
+				scrollTop: y1 - 5
+			}, "slow", function() {
+				$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+			});
+		} else {
+			$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		}
+	} else {
+		$element.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+	}
 }
 
 function increment() {
