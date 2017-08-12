@@ -129,6 +129,16 @@
 			
 
 			<div id="text-div"></div>
+				<div class="row form-group">
+					<div class="col-xs-8 text-left">
+					</div>
+					<div class="col-xs-4 text-right">
+						<div class="btn-group" role="group">
+							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+						</div>
+					</div>
+				</div>
 		</div>
 
 		<!-- Scripts -->
