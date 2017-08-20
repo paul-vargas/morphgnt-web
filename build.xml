@@ -12,6 +12,7 @@
 		<copy todir="${netbeans_src}" overwrite="true" verbose="true">
 			<fileset dir="${git_src}">
 				<include name="**/*.*" />
+				<different targetdir="${netbeans_src}" />
 			</fileset>
 		</copy>
 	</target>
@@ -19,10 +20,11 @@
 	<target name="netbeans-to-git">
 		<copy file="${netbeans_dir}/pom.xml" tofile="${git_dir}/pom.xml" overwrite="true" verbose="true" />
 		<copy file="${netbeans_dir}/build.xml" tofile="${git_dir}/build.xml" overwrite="true" verbose="true" failonerror="false" />
-		<copy todir="${git_src}" overwrite="true" verbose="true">
+		<copy todir="${git_src}" overwrite="true" verbose="true"  >
 			<fileset dir="${netbeans_src}">
 				<include name="**/*.*" />
 				<exclude name="**/jboss-web.xml" />
+				<different targetdir="${git_src}" />
 			</fileset>
 		</copy>
 	</target>
@@ -33,18 +35,21 @@
 			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\java\org\paulvargas\greek">
 				<include name="**/*.*" />
 				<exclude name="**/jboss-web.xml" />
+				<different targetdir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\java\org\paulvargas\greek" />
 			</fileset>
 		</copy>
 		<echo>Copy Resources</echo>
 		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\resources\org\paulvargas\greek" overwrite="true" verbose="true">
 			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\resources\org\paulvargas\greek">
 				<include name="**/*.*" />
+				<different targetdir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\resources\org\paulvargas\greek" />
 			</fileset>
 		</copy>
 		<echo>Copy Page</echo>
 		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\webapp\WEB-INF\pages\greek" overwrite="true" verbose="true">
 			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\webapp\WEB-INF\pages\greek">
 				<include name="**/*.*" />
+				<different targetdir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\webapp\WEB-INF\pages\greek" />
 			</fileset>
 		</copy>
 	</target>	

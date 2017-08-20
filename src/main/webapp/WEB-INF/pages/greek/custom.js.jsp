@@ -354,7 +354,7 @@ function loadVerses(book, chapter) {
 		url: "greek/verses/" + book + "/" + chapter,
 		dataType: "json",
 		beforeSend: function (xhr) {
-
+			showLoader();
 		},
 		success: function (data, textStatus, jqXHR) {
 			var $div = $("#text-div").empty();
@@ -389,9 +389,10 @@ function loadVerses(book, chapter) {
 				localStorage.setItem(localConfig.keynameForChapter, chapter);		
 			}
 
+			hideLoader();
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-
+			hideLoader();
 		},
 		complete: function (jqXHR, textStatus) {
 
@@ -440,4 +441,14 @@ function next() {
 	$book.val(book);
 	$chapter.val(chapter);
 	changeChapter(chapter);
+}
+
+function showLoader() {
+	$("#loader-div").show();
+}
+
+function hideLoader() {
+	if (jQuery.active <= 1) {
+		$("#loader-div").hide();
+	}
 }

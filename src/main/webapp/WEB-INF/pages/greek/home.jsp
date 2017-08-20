@@ -139,6 +139,11 @@
 						</div>
 					</div>
 				</div>
+
+			<div id="loader-div" class="modal-wheel" style="display: none">
+				<div class="wheel"></div>
+			</div>
+
 		</div>
 
 		<!-- Scripts -->
