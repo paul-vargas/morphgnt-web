@@ -24,6 +24,7 @@
 			<fileset dir="${netbeans_src}">
 				<include name="**/*.*" />
 				<exclude name="**/jboss-web.xml" />
+				<exclude name="**/context.xml" />
 				<different targetdir="${git_src}" />
 			</fileset>
 		</copy>
@@ -35,6 +36,7 @@
 			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\java\org\paulvargas\greek">
 				<include name="**/*.*" />
 				<exclude name="**/jboss-web.xml" />
+				<exclude name="**/context.xml" />
 				<different targetdir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\java\org\paulvargas\greek" />
 			</fileset>
 		</copy>
@@ -42,6 +44,8 @@
 		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\resources\org\paulvargas\greek" overwrite="true" verbose="true">
 			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\resources\org\paulvargas\greek">
 				<include name="**/*.*" />
+				<exclude name="**/jboss-web.xml" />
+				<exclude name="**/context.xml" />
 				<different targetdir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\resources\org\paulvargas\greek" />
 			</fileset>
 		</copy>
@@ -49,6 +53,8 @@
 		<copy todir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\webapp\WEB-INF\pages\greek" overwrite="true" verbose="true">
 			<fileset dir="C:\Users\anonymous\Documents\NetBeansProjects\morphgnt-web\src\main\webapp\WEB-INF\pages\greek">
 				<include name="**/*.*" />
+				<exclude name="**/jboss-web.xml" />
+				<exclude name="**/context.xml" />
 				<different targetdir="C:\Users\anonymous\Documents\NetBeansProjects\jbossas\src\main\webapp\WEB-INF\pages\greek" />
 			</fileset>
 		</copy>

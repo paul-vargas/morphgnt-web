@@ -107,38 +107,40 @@
 				</p>--%>
 			</form>
 			</div>
-				<div class="form-group text-right">
-					<a href="#collapse-div" data-toggle="collapse"><fmt:message key="link.collapse" /></a>
+			<div class="form-group text-right">
+				<a href="#collapse-div" data-toggle="collapse"><fmt:message key="link.collapse" /></a>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-8 text-left">
+					<label><fmt:message key="book.name" />: <select name="book" onchange="changeChapter(event, this)"></select></label>
+					<label><fmt:message key="chapter.name" />: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter(event, this)"><datalist id="chapters"></datalist></label>
 				</div>
-				<div class="row form-group">
-					<div class="col-xs-8 text-left">
-						<label><fmt:message key="book.name" />: <select name="book" onchange="changeChapter()"></select></label>
-						<label><fmt:message key="chapter.name" />: <input type="number" name="chapter" list="chapters" min="1" max="5" step="1" autocomplete="off" inputmode="numeric" oninput="changeChapter()"><datalist id="chapters"></datalist></label>
-					</div>
-					<div class="col-xs-4 text-right">
-						<div class="btn-group" role="group">
-							<button class="btn btn-default btn-sm" type="button" onclick="decrement()"><span class="glyphicon glyphicon-font" aria-hidden="true"></span><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-							<button class="btn btn-default btn-sm" type="button" onclick="increment()"><span class="glyphicon glyphicon-font" aria-hidden="true"></span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-						</div>
-						<div class="btn-group" role="group">
-							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-						</div>
-					</div>
+				<div class="col-xs-4 text-right"><%--
+					<div class="btn-group" role="group">--%>
+						<button class="btn btn-default btn-sm" type="button" onclick="decrement()"><span class="glyphicon glyphicon-font" aria-hidden="true"></span><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+						<button class="btn btn-default btn-sm" type="button" onclick="increment()"><span class="glyphicon glyphicon-font" aria-hidden="true"></span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button><%--
+					</div>--%><%--
+					<div class="btn-group" role="group">--%>
+						<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(event, this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+						<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(event, this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button><%--
+					</div>--%>
 				</div>
-			
+			</div>
 
+			<h4 class="text-center" id="passage"></h4>
+			<hr>
 			<div id="text-div"></div>
-				<div class="row form-group">
-					<div class="col-xs-8 text-left">
-					</div>
-					<div class="col-xs-4 text-right">
-						<div class="btn-group" role="group">
-							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-							<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-						</div>
-					</div>
+
+			<div class="row form-group">
+				<div class="col-xs-8 text-left">
 				</div>
+				<div class="col-xs-4 text-right"><%--
+					<div class="btn-group" role="group">--%>
+						<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="previous(event, this)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+						<button class="btn btn-info btn-sm" type="button" aria-label="<fmt:message key="button.clear" />" onclick="next(event, this)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button><%--
+					</div>--%>
+				</div>
+			</div>
 
 			<div id="loader-div" class="modal-wheel" style="display: none">
 				<div class="wheel"></div>

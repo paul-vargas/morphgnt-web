@@ -19,7 +19,9 @@ var localConfig = {
 	fontsize: null,
 	keynameForBook: "greek_vldtn_book",
 	keynameForChapter: "greek_vldtn_chapter",
-	keynameForFontSize: "greek_vldtn_fontsize"
+	keynameForFontSize: "greek_vldtn_fontsize",
+	debounceTimeout: 1500,
+	debounceTimeoutID: null
 };
 
 var books = {
@@ -327,7 +329,7 @@ function highlight() {
 	});
 }
 
-function changeChapter(chapter) {
+function changeChapter(evt, ele, chapter) {
 	var $book = $("select[name=book]");
 	var $chapter = $("input[name=chapter]");
 	var $chapters = $("#chapters");
@@ -343,12 +345,25 @@ function changeChapter(chapter) {
 		$chapter.val(chapter || min);
 	}
 	chapter = $chapter.val();
-	loadVerses(book, chapter);
+	if (chapter !== "") {
+		var tagName = ele.tagName;
+		switch (tagName) {
+			case "BUTTON":
+			case "SELECT":
+				loadVerses(book, chapter);
+				break;
+			case "INPUT":
+				clearTimeout(localConfig.debounceTimeoutID);
+				localConfig.debounceTimeoutID = setTimeout(function() {
+					loadVerses(book, chapter);
+				}, localConfig.debounceTimeout);
+				break;
+		}
+	}
+
 }
 
 function loadVerses(book, chapter) {
-	
-
 	
 	$.ajax({
 		url: "greek/verses/" + book + "/" + chapter,
@@ -386,7 +401,8 @@ function loadVerses(book, chapter) {
 				localConfig.book = book;
 				localConfig.chapter = chapter;
 				localStorage.setItem(localConfig.keynameForBook, book);
-				localStorage.setItem(localConfig.keynameForChapter, chapter);		
+				localStorage.setItem(localConfig.keynameForChapter, chapter);
+				$("#passage").text(books[book].a + " " + chapter);
 			}
 
 			hideLoader();
@@ -401,7 +417,7 @@ function loadVerses(book, chapter) {
 
 }
 
-function previous() {
+function previous(evt, ele) {
 	var $book = $("select[name=book]");
 	var $chapter = $("input[name=chapter]");
 	var book = $book.val();
@@ -419,10 +435,10 @@ function previous() {
 	}
 	$book.val(book);
 	$chapter.val(chapter);
-	changeChapter(chapter);
+	changeChapter(evt, ele, chapter);
 }
 
-function next() {
+function next(evt, ele) {
 	var $book = $("select[name=book]");
 	var $chapter = $("input[name=chapter]");
 	var book = $book.val();
@@ -440,7 +456,7 @@ function next() {
 	}
 	$book.val(book);
 	$chapter.val(chapter);
-	changeChapter(chapter);
+	changeChapter(evt, ele, chapter);
 }
 
 function showLoader() {
